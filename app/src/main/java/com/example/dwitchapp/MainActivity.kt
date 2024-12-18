@@ -50,6 +50,7 @@ import com.example.dwitchapp.data.mockOrders
 import com.example.dwitchapp.model.Ingredient
 import com.example.dwitchapp.model.IngredientKind
 import com.example.dwitchapp.model.getColorForIngredientKind
+import com.example.dwitchapp.model.getEmojiForIngredientKind
 import com.example.dwitchapp.ui.theme.DwitchAppTheme
 import java.util.Date
 import java.util.Locale
@@ -163,6 +164,7 @@ fun GreetingPreview() {
                             }
                             items(order.ingredients ?: emptyList()) { ingredient ->
                                 val color = getColorForIngredientKind(ingredient.kind ?: IngredientKind.BREAD)
+                                val emoji = getEmojiForIngredientKind(ingredient.kind ?: IngredientKind.BREAD)
 
                                 Column (
                                     modifier = Modifier
@@ -175,7 +177,7 @@ fun GreetingPreview() {
 //                                        }
                                         .padding(3.dp)
                                 ){
-                                    Text(text = (ingredient.name) ?: "")
+                                    Text(text = emoji + " " + (ingredient.name) ?: "")
 //                                    Text(text = ingredient.kind?.name ?: "")
                                 }
                             }

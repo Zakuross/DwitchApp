@@ -29,3 +29,12 @@ fun getColorForIngredientKind(kind: IngredientKind): androidx.compose.ui.graphic
         IngredientKind.SAUCE -> Color(0xFF00CED1) // Dark Turquoise
     }
 }
+
+fun getEmojiForIngredientKind(kind: IngredientKind): String {
+    return when (kind) {
+        IngredientKind.BREAD -> "🍞"
+        IngredientKind.MAIN -> "🍔"
+        IngredientKind.TOPPING -> "🧀"
+        IngredientKind.SAUCE -> "🍲"
+    }
+}
