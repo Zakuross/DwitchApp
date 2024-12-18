@@ -179,5 +179,106 @@ val mockOrders = listOf(
             city = "Marseille",
             zipCode = "13001"
         )
+    ),
+    Order(
+        id = 4,
+        documentID = "doc125",
+        placedAt = parseDate("2024-12-16T14:00:00"),
+        receivedAt = parseDate("2024-12-16T14:20:00"),
+        cookMessage = "Cuit à point, sans oignons",
+        price = 1800L,
+        progress = 90L,
+        ingredients = listOf(
+            Ingredient(
+                id = 14,
+                documentID = "ingredient5",
+                name = "Salade",
+                description = "Salade fraîchement coupée",
+                isVegan = true,
+                isSpicy = false,
+                kind = IngredientKind.TOPPING
+            ),
+            Ingredient(
+                id = 29,
+                documentID = "ingredient6",
+                name = "Fromage",
+                description = "Fromage cheddar",
+                isVegan = false,
+                isSpicy = false,
+                kind = IngredientKind.TOPPING
+            )
+        ),
+        usersPermissionsUser = UsersPermissionsUser(
+            id = 104,
+            documentID = "user103",
+            username = "michael",
+            email = "michael@example.com",
+            provider = "facebook",
+            confirmed = true,
+            blocked = false
+        ),
+        store = Store(
+            id = 12,
+            documentID = "store12",
+            name = "Restaurant Marseille",
+            isOpen = true,
+            city = "Marseille",
+            zipCode = "13001"
+        )
+    ),
+    Order(
+        id = 5,
+        documentID = "doc125",
+        placedAt = parseDate("2024-12-16T14:00:00"),
+        receivedAt = parseDate("2024-12-16T14:20:00"),
+        cookMessage = "Cuit à point, sans oignons",
+        price = 1800L,
+        progress = 90L,
+        ingredients = listOf(
+            Ingredient(
+                id = 42,
+                documentID = "ingredient5",
+                name = "Agneau",
+                description = "filet d'agneau",
+                isVegan = true,
+                isSpicy = false,
+                kind = IngredientKind.MAIN
+            ),
+            Ingredient(
+                id = 6,
+                documentID = "ingredient6",
+                name = "Fromage",
+                description = "Fromage cheddar",
+                isVegan = false,
+                isSpicy = false,
+                kind = IngredientKind.TOPPING
+            ),
+            Ingredient(
+                id = 6,
+                documentID = "ingredient6",
+                name = "Barbecue",
+                description = "Sauce barbecue",
+                isVegan = false,
+                isSpicy = false,
+                kind = IngredientKind.SAUCE
+            )
+        ),
+        usersPermissionsUser = UsersPermissionsUser(
+            id = 105,
+            documentID = "user103",
+            username = "michael",
+            email = "michael@example.com",
+            provider = "facebook",
+            confirmed = true,
+            blocked = false
+        ),
+        store = Store(
+            id = 12,
+            documentID = "store12",
+            name = "Restaurant Marseille",
+            isOpen = true,
+            city = "Marseille",
+            zipCode = "13001"
+        )
     )
 )

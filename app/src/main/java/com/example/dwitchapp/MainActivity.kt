@@ -108,7 +108,7 @@ fun GreetingPreview() {
                                 )
                             }
                             Spacer(modifier = Modifier.weight(0.5f))
-                            Text("Top App Bar")
+                            Text("Mes Commandes")
                             Spacer(modifier = Modifier.weight(1f))
 
                         }
