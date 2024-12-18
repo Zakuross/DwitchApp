@@ -10,6 +10,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -22,9 +23,13 @@ import androidx.compose.foundation.lazy.LazyItemScope
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -85,11 +90,42 @@ fun GreetingPreview() {
             topBar = {
                 TopAppBar(
                     colors = TopAppBarDefaults.topAppBarColors(
-                        containerColor = MaterialTheme.colorScheme.primaryContainer,
-                        titleContentColor = MaterialTheme.colorScheme.primary,
+                        containerColor = Color(0xFF007BFF),
+//                        containerColor = MaterialTheme.colorScheme.primaryContainer,
+                        titleContentColor = Color(0xFFffffff),
                     ),
                     title = {
-                        Text("Top App Bar")
+                        Row (
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.Start
+                        ) {
+                            IconButton(onClick =  { /* Handle Navigation */ }) {
+                                Icon(
+                                    imageVector = Icons.Default.ArrowBack,
+                                    contentDescription = "Back"
+
+                                )
+                            }
+                            Spacer(modifier = Modifier.weight(0.5f))
+                            Text("Top App Bar")
+                            Spacer(modifier = Modifier.weight(1f))
+
+                        }
+                    },
+                    actions = {
+                            IconButton(onClick = { /* Handle Search */ }) {
+                                Icon(
+                                    imageVector = Icons.Default.Search,
+                                    contentDescription = "Search"
+                                )
+                            }
+                            IconButton(onClick = { /* Handle Navigation */ }) {
+                                Icon(
+                                    painter = painterResource(R.drawable.baseline_add_shopping_cart_24),
+                                    contentDescription = "Orders"
+                                )
+                            }
+
                     }
                 )
             },
@@ -164,6 +200,8 @@ fun GreetingPreview() {
 
     }
 }
+
+
 
 //fun items(items: List<Ingredient>?, itemContent: @Composable() (LazyItemScope.(item: Ingredient) -> Unit)) {
 //    TODO("Not yet implemented")
