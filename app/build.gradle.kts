@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.compose.compiler)
 }
 
 android {
@@ -55,6 +56,8 @@ android {
 dependencies {
 
     implementation(libs.moshiConverter)
+    implementation(libs.moshi.adapter)
+    implementation(libs.lifecycle.compose)
     ksp(libs.codegen)
     implementation(libs.moshi)
     implementation(libs.retrofit)

@@ -12,6 +12,8 @@ moshi = "1.15.2"
 retrofit = "2.11.0"
 ksp = "2.1.0-1.0.29"
 codegen = "1.15.2"
+lifecycle-compose = "2.8.7"
+moshi-adapter = "1.15.2"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -32,9 +34,12 @@ moshi = { group = "com.squareup.moshi", name = "moshi-kotlin", version.ref = "mo
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 codegen = { group = "com.squareup.moshi", name = "moshi-kotlin-codegen", version.ref = "codegen"}
 moshiConverter = { group = "com.squareup.retrofit2", name = "converter-moshi", version.ref = "retrofit" }
+lifecycle-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "lifecycle-compose" }
+moshi-adapter = { group = "com.squareup.moshi", name = "moshi-adapters", version.ref = "moshi-adapter" }
 
 [plugins]
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp"}
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 

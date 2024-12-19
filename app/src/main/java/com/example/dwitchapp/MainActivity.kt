@@ -38,6 +38,11 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawBehind
@@ -49,9 +54,15 @@ import androidx.compose.ui.unit.dp
 import com.example.dwitchapp.data.mockOrders
 import com.example.dwitchapp.model.Ingredient
 import com.example.dwitchapp.model.IngredientKind
+import com.example.dwitchapp.model.Order
 import com.example.dwitchapp.model.getColorForIngredientKind
 import com.example.dwitchapp.model.getEmojiForIngredientKind
+import com.example.dwitchapp.service.ApiClient
 import com.example.dwitchapp.ui.theme.DwitchAppTheme
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import retrofit2.HttpException
+import timber.log.Timber
 import java.util.Date
 import java.util.Locale
 
@@ -62,7 +73,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             DwitchAppTheme {
-                GreetingPreview()
+//                GreetingPreview()
 //                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
 //                    Greeting(
 //                        name = "Android",
@@ -81,6 +92,43 @@ class MainActivity : ComponentActivity() {
 //        modifier = modifier
 //    )
 //}
+
+@Preview(showBackground = true)
+@Composable
+fun OrderScreen(){
+    var orders by remember { mutableStateOf<List<Order>>(emptyList()) }
+    var error by remember { mutableStateOf<String?>(null) }
+
+    LaunchedEffect(Unit) {
+        try {
+            val token = "Bearer 49b70f996ffbb654be996f8604d118bfca7624ced27749df6f4fdcac30b7009da1ba63ef7d6b91c8ca814baf88955daba2804396ab3b8cd2c03b50a1f96ff330032d2fbc2238338b4f7e25bff9e852b002c26ecca02fbf1e8e261cf6e0cdb00c042e35b33f64dda3522c3178ba1edb22b9daba42b51c1c8355309fd475b5d92b"
+            val response = withContext(Dispatchers.IO) {
+                ApiClient.apiService.getOrders(token)
+            }
+            orders = response.data
+        } catch (e: HttpException)  {
+            Timber.d("Error Parcho: ${e.message}")
+            error = e.message
+        }
+
+    }
+
+    Surface(
+        modifier = Modifier.fillMaxSize(),
+        color = MaterialTheme.colorScheme.background
+    ) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            if (error != null) {
+                Text(text = "Error: $error", style = MaterialTheme.typography.bodyLarge)
+            } else {
+                orders.forEach { order ->
+                    Text(text = "Order ID: ${order.id}", style = MaterialTheme.typography.bodyLarge)
+                    // Ajoutez d'autres informations sur la commande si nécessaire
+                }
+            }
+        }
+    }
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Preview(showBackground = true)
@@ -177,7 +225,7 @@ fun GreetingPreview() {
 //                                        }
                                         .padding(3.dp)
                                 ){
-                                    Text(text = emoji + " " + (ingredient.name) ?: "")
+                                    Text(text = (emoji + " " + (ingredient.name)) ?: "")
 //                                    Text(text = ingredient.kind?.name ?: "")
                                 }
                             }
