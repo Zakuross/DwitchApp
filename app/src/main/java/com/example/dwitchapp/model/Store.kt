@@ -1,11 +1,17 @@
 package com.example.dwitchapp.model
 
-data class Store (
-    val id: Long? = null,
-    val documentID: String? = null,
-    val name: String? = null,
-    val isOpen: Boolean? = null,
-    val city: String? = null,
-    val zipCode: String? = null,
+import com.squareup.moshi.JsonClass
+import java.util.Date
 
+@JsonClass(generateAdapter = true)
+data class Store (
+    val id: Long,
+    val documentId: String,
+    val name: String,
+    val isOpen: Boolean,
+    val city: String,
+    val zipCode: String,
+    val createdAt: Date,
+    val updatedAt: Date,
+    val publishedAt: Date
 )

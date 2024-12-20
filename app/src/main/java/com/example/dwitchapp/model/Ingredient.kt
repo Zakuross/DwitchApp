@@ -2,24 +2,32 @@ package com.example.dwitchapp.model
 
 
 import androidx.compose.ui.graphics.Color
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
+import java.util.Date
 
+@JsonClass(generateAdapter = true)
 data class Ingredient (
-    val id: Long? = null,
-    val documentID: String? = null,
-    val name: String? = null,
-    val description: String? = null,
+    val id: Long,
+    val documentId: String,
+    val name: String,
+    val description: String,
     val isVegan: Boolean? = null,
     val isSpicy: Boolean? = null,
-    val kind: IngredientKind? = null,
-
+//    val kind: String? = null  //remplacer par l'enum
+    val kind: IngredientKind,
+    val createdAt: Date,
+    val updatedAt: Date,
+    val publishedAt: Date
 )
 
 enum class IngredientKind {
-    BREAD,
-    MAIN,
-    TOPPING,
-    SAUCE
+    @Json(name = "bread") BREAD,
+    @Json(name = "main") MAIN,
+    @Json(name = "topping") TOPPING,
+    @Json(name = "sauce") SAUCE,
 }
+
 
 fun getColorForIngredientKind(kind: IngredientKind): androidx.compose.ui.graphics.Color {
     return when (kind) {

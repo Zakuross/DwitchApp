@@ -1,12 +1,18 @@
 package com.example.dwitchapp.model
 
-data class UsersPermissionsUser (
-    val id: Long? = null,
-    val documentID: String? = null,
-    val username: String? = null,
-    val email: String? = null,
-    val provider: String? = null,
-    val confirmed: Boolean? = null,
-    val blocked: Boolean? = null,
+import com.squareup.moshi.JsonClass
+import java.util.Date
 
+@JsonClass(generateAdapter = true)
+data class UsersPermissionsUser (
+    val id: Long,
+    val documentId: String,
+    val username: String,
+    val email: String,
+    val provider: String,
+    val confirmed: Boolean,
+    val blocked: Boolean,
+    val createdAt: Date,
+    val updatedAt: Date,
+    val publishedAt: Date
 )
